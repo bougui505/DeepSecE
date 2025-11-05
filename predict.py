@@ -75,7 +75,7 @@ def predict(model, fasta, batch_size, device, outdir, pos_labels, save_attn=Fals
 
     probs = np.concatenate(probs)
     preds = np.concatenate(preds)
-    print(f"{probs.shape=}")
+    print(f"{probs.shape=}")  # all sequences !
 
     probs_non_effector = probs[:, 0]
     probs_t1se = probs[:, 1]
@@ -89,12 +89,13 @@ def predict(model, fasta, batch_size, device, outdir, pos_labels, save_attn=Fals
     result = pd.DataFrame({'name': names, 'system': systems, 'score': scores, 'NonSecreted.prob': probs_non_effector, 'T1SE.prob': probs_t1se,
                           'T2SE.prob': probs_t2se, 'T3SE.prob': probs_t3se, 'T4SE.prob': probs_t4se, 'T6SE.prob': probs_t6se, 'length': lengths})
     result = result.round(4)
-    print(f"{result.shape=}")
+    print(f"{result.shape=}")  # all sequences !
 
     # print(f"Writing prediction result in {os.path.join(outdir, 'predictions.csv')}")
     # result.to_csv(os.path.join(outdir, 'predictions.csv'), index=False)
 
     effector = result[result['system'].isin(pos_labels)]
+    print(f"{effector.shape=}")
     effector.to_csv(os.path.join(outdir, 'results.csv'), index=False)
 
     print(f"Writing putative secreted proteins in {os.path.join(outdir, 'secreted-proteins.fasta')}")
