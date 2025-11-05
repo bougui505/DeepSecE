@@ -91,8 +91,8 @@ def predict(model, fasta, batch_size, device, outdir, pos_labels, save_attn=Fals
     result = result.round(4)
     print(f"{result.shape=}")  # all sequences !
 
-    # print(f"Writing prediction result in {os.path.join(outdir, 'predictions.csv')}")
-    # result.to_csv(os.path.join(outdir, 'predictions.csv'), index=False)
+    print(f"Writing prediction result in {os.path.join(outdir, 'predictions.csv')}")
+    result.to_csv(os.path.join(outdir, 'predictions.csv'), index=False)
 
     effector = result[result['system'].isin(pos_labels)]
     print(f"{effector.shape=}")
