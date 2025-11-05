@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -15,7 +16,7 @@ offset = .1
 start_time = time.time()
 
 data = np.load(os.path.join(dirname, 'attn.npz'))
-fasta_dict = SeqIO.to_dict(SeqIO.parse(os.path.join(dirname, 'effectors.fasta'), 'fasta'))
+fasta_dict = SeqIO.to_dict(SeqIO.parse(os.path.join(dirname, 'secreted-proteins.fasta'), 'fasta'))
 os.makedirs(os.path.join(dirname, 'attn'), exist_ok=True)
 
 for key, value in data.items():

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 from argparse import ArgumentParser
 
@@ -28,7 +29,7 @@ def main(args):
 
     if len(systems) > 0:
         print(f'Type {", ".join(systems)} secretion system(s) are found.')
-        pred_cmd = f"python predict.py --fasta_path {args.fasta_path} --model_location {args.model_location} " \
+        pred_cmd = f"predict.py --fasta_path {args.fasta_path} --model_location {args.model_location} " \
             f"--secretion_systems {' '.join(systems)} --out_dir {args.out_dir}"
         if args.save_attn:
             pred_cmd += " --save_attn"
